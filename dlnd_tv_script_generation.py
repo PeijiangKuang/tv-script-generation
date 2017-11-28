@@ -297,7 +297,7 @@ tests.test_get_embed(get_embed)
 # 
 # Return the outputs and final_state state in the following tuple `(Outputs, FinalState)` 
 
-# In[14]:
+# In[13]:
 
 
 def build_rnn(cell, inputs):
@@ -327,7 +327,7 @@ tests.test_build_rnn(build_rnn)
 # 
 # Return the logits and final state in the following tuple (Logits, FinalState) 
 
-# In[15]:
+# In[14]:
 
 
 def build_nn(cell, rnn_size, input_data, vocab_size, embed_dim):
@@ -391,7 +391,7 @@ tests.test_build_nn(build_nn)
 # 
 # Notice that the last target value in the last batch is the first input value of the first batch. In this case, `1`. This is a common technique used when creating sequence batches, although it is rather unintuitive.
 
-# In[16]:
+# In[15]:
 
 
 def get_batches(int_text, batch_size, seq_length):
@@ -441,7 +441,7 @@ tests.test_get_batches(get_batches)
 # - Set `learning_rate` to the learning rate.
 # - Set `show_every_n_batches` to the number of batches the neural network should print progress.
 
-# In[17]:
+# In[16]:
 
 
 # Number of Epochs
@@ -468,7 +468,7 @@ save_dir = './save'
 # ### Build the Graph
 # Build the graph using the neural network you implemented.
 
-# In[18]:
+# In[17]:
 
 
 """
@@ -505,7 +505,7 @@ with train_graph.as_default():
 # ## Train
 # Train the neural network on the preprocessed data.  If you have a hard time getting a good loss, check the [forums](https://discussions.udacity.com/) to see if anyone is having the same problem.
 
-# In[19]:
+# In[18]:
 
 
 """
@@ -544,7 +544,7 @@ with tf.Session(graph=train_graph) as sess:
 # ## Save Parameters
 # Save `seq_length` and `save_dir` for generating a new TV script.
 
-# In[20]:
+# In[19]:
 
 
 """
@@ -556,7 +556,7 @@ helper.save_params((seq_length, save_dir))
 
 # # Checkpoint
 
-# In[21]:
+# In[20]:
 
 
 """
@@ -581,7 +581,7 @@ seq_length, load_dir = helper.load_params()
 # 
 # Return the tensors in the following tuple `(InputTensor, InitialStateTensor, FinalStateTensor, ProbsTensor)` 
 
-# In[22]:
+# In[21]:
 
 
 def get_tensors(loaded_graph):
@@ -607,7 +607,7 @@ tests.test_get_tensors(get_tensors)
 # ### Choose Word
 # Implement the `pick_word()` function to select the next word using `probabilities`.
 
-# In[23]:
+# In[22]:
 
 
 def pick_word(probabilities, int_to_vocab):
@@ -632,7 +632,7 @@ tests.test_pick_word(pick_word)
 # ## Generate TV Script
 # This will generate the TV script for you.  Set `gen_length` to the length of TV script you want to generate.
 
-# In[24]:
+# In[23]:
 
 
 gen_length = 1000
