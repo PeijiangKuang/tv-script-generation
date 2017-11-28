@@ -343,7 +343,7 @@ def build_nn(cell, rnn_size, input_data, vocab_size, embed_dim):
     # TODO: Implement Function
     embeddings = get_embed(input_data, vocab_size, embed_dim)
     outputs, final_state = build_rnn(cell, embeddings)
-    logits = tf.contrib.layers.fully_connected(outputs, vocab_size)
+    logits = tf.contrib.layers.fully_connected(outputs, vocab_size, activation_fn=None)
     return logits, final_state
 
 
@@ -441,7 +441,7 @@ tests.test_get_batches(get_batches)
 # - Set `learning_rate` to the learning rate.
 # - Set `show_every_n_batches` to the number of batches the neural network should print progress.
 
-# In[16]:
+# In[24]:
 
 
 # Number of Epochs
@@ -451,7 +451,7 @@ batch_size = 128
 # RNN Size
 rnn_size = 512
 # Embedding Dimension Size
-embed_dim = 300
+embed_dim = 256
 # Sequence Length
 seq_length = 16
 # Learning Rate
@@ -468,7 +468,7 @@ save_dir = './save'
 # ### Build the Graph
 # Build the graph using the neural network you implemented.
 
-# In[17]:
+# In[25]:
 
 
 """
@@ -505,7 +505,7 @@ with train_graph.as_default():
 # ## Train
 # Train the neural network on the preprocessed data.  If you have a hard time getting a good loss, check the [forums](https://discussions.udacity.com/) to see if anyone is having the same problem.
 
-# In[18]:
+# In[26]:
 
 
 """
@@ -544,7 +544,7 @@ with tf.Session(graph=train_graph) as sess:
 # ## Save Parameters
 # Save `seq_length` and `save_dir` for generating a new TV script.
 
-# In[19]:
+# In[27]:
 
 
 """
@@ -556,7 +556,7 @@ helper.save_params((seq_length, save_dir))
 
 # # Checkpoint
 
-# In[20]:
+# In[28]:
 
 
 """
@@ -581,7 +581,7 @@ seq_length, load_dir = helper.load_params()
 # 
 # Return the tensors in the following tuple `(InputTensor, InitialStateTensor, FinalStateTensor, ProbsTensor)` 
 
-# In[21]:
+# In[29]:
 
 
 def get_tensors(loaded_graph):
@@ -607,7 +607,7 @@ tests.test_get_tensors(get_tensors)
 # ### Choose Word
 # Implement the `pick_word()` function to select the next word using `probabilities`.
 
-# In[22]:
+# In[30]:
 
 
 def pick_word(probabilities, int_to_vocab):
@@ -632,7 +632,7 @@ tests.test_pick_word(pick_word)
 # ## Generate TV Script
 # This will generate the TV script for you.  Set `gen_length` to the length of TV script you want to generate.
 
-# In[23]:
+# In[31]:
 
 
 gen_length = 1000
